@@ -1,0 +1,144 @@
+############################### users ############################
+
+================ index - Mendapatkan Daftar Pengguna ================ 
+Deskripsi:
+Endpoint ini digunakan untuk mengambil daftar semua pengguna yang ada dalam basis data.
+
+Metode HTTP: GET
+
+URL: http://localhost:3000/users
+
+Respon Sukses:
+
+json
+{
+  "message": [array_of_users]
+}
+
+
+================ update - Memperbarui Data Pengguna ================ 
+Deskripsi:
+Endpoint ini digunakan untuk memperbarui data pengguna berdasarkan ID pengguna yang diberikan.
+
+Metode HTTP: PUT
+
+URL: http://localhost:3000/users/:id
+
+Permintaan (Request):
+
+json
+{
+  "username": "nama_baru",
+  "email": "email_baru@example.com",
+  "password": "kata_sandi_baru",
+  "gender": "jenis_kelamin_baru",
+  "dateOfBirth": "tanggal_lahir_baru",
+  "noPhone": "nomor_telepon_baru",
+  "address": "alamat_baru"
+}
+Respon Sukses:
+
+json
+Copy code
+{
+  "message": "Updates user Successfully"
+}
+
+
+================  destroy - Menghapus Pengguna ================ 
+Deskripsi:
+Endpoint ini digunakan untuk menghapus pengguna berdasarkan ID pengguna yang diberikan.
+
+Metode HTTP: DELETE
+
+URL: http://localhost:3000/users/:id
+
+Respon Sukses:
+
+json
+Copy code
+{
+  "message": "Deleted Successfully"
+}
+
+
+############################### auth ############################
+
+register - Registrasi Pengguna Baru
+Deskripsi:
+Endpoint ini digunakan untuk mendaftarkan pengguna baru ke dalam sistem.
+
+Metode HTTP: POST
+
+URL: /register
+
+Permintaan (Request):
+
+json
+Copy code
+{
+  "username": "nama_pengguna",
+  "email": "email@example.com",
+  "password": "kata_sandi",
+  "confPassword": "konfirmasi_kata_sandi"
+}
+Respon Sukses:
+
+json
+Copy code
+{
+  "message": "Register Successfully"
+}
+login - Masuk (Login) Pengguna
+Deskripsi:
+Endpoint ini digunakan untuk melakukan otentikasi pengguna dan memberikan token akses jika masuk berhasil.
+
+Metode HTTP: POST
+
+URL: /login
+
+Permintaan (Request):
+
+json
+Copy code
+{
+  "username": "nama_pengguna",
+  "password": "kata_sandi"
+}
+Respon Sukses:
+
+json
+Copy code
+{
+  "data": [data_pengguna],
+  "token": "token_akses"
+}
+Skenario Gagal:
+
+Pengguna tidak ditemukan:
+
+Status HTTP: 401 Unauthorized
+Respon JSON:
+json
+Copy code
+{
+  "message": "Pengguna tidak ditemukan."
+}
+Kata sandi salah:
+
+Status HTTP: 401 Unauthorized
+Respon JSON:
+json
+Copy code
+{
+  "message": "Kata sandi salah."
+}
+Kesalahan internal server (server error):
+
+Status HTTP: 500 Internal Server Error
+Respon JSON:
+json
+Copy code
+{
+  "message": "Terjadi kesalahan internal server saat mencoba masuk."
+}
